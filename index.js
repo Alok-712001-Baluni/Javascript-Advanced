@@ -11,6 +11,8 @@
 // ^ "even after the parent function has closed" 
 
 // ? A closure is created when we define a function, not when a function is executed. 
+
+/*
 let x = 10;
 
 const parentFunction = ()=>{
@@ -29,7 +31,57 @@ const parentFunction = ()=>{
 const result = parentFunction();
 console.log(result);
 
-result(); // ? even though the funciton is closed the child function still has 
+result(); // ? even though the function is closed the child function still has 
 //? access to the variable of the parent function.
 result(); // ? myValue variable is private in the global scope(so can't log it in he console here).
 
+*/
+
+
+
+
+/*
+
+
+
+// & IIFE (Immmediately Invoked function expression)
+
+// & privateCounter returns only one time.
+const privateCounter = (() =>{
+    let count = 0;
+    console.log(` initial value ${count}`);
+
+    return () => { 
+    count += 1; 
+    console.log(count);
+}
+})();
+
+privateCounter();
+privateCounter();
+privateCounter();
+privateCounter();
+privateCounter();
+privateCounter();
+
+*/
+
+
+
+const credits = ((num) => {
+    let credits = num;
+    console.log(`initial credits value: ${credits}`);
+    return () => {
+        credits -= 1;
+        if(credits > 0){
+            console.log(`playing game, ${credits} remaining`);
+        } else{
+            console.log('not enough credits left');
+        }
+    }
+})(3);
+
+// ? anonymous function has the closure over the IIFE.
+credits();
+credits();
+credits();
