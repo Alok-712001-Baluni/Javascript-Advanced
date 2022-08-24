@@ -50,36 +50,55 @@ Object.setPrototypeOf(musician, person); // ? musician is the child of person
 
 
 // ? Object with setter and getter methods.
-const car = {
-    doors: 4,
-    seats: 'vinyl',
-    get seatMaterial(){
-        return this.seats;
-    },
-    set seatMaterial(material){
-        this.seats = material
-    }
+// const car = {
+//     doors: 4,
+//     seats: 'vinyl',
+//     get seatMaterial(){
+//         return this.seats;
+//     },
+//     set seatMaterial(material){
+//         this.seats = material
+//     }
+// }
+
+// const luxuryCar = {};
+// Object.setPrototypeOf(luxuryCar, car);
+// luxuryCar.seatMaterial="leather";
+// console.log('luxury car is', luxuryCar);
+// console.log('(parent)car is', car);
+
+
+// // ! walking up the prototype chain - properties and methods are not copied.
+// console.log(luxuryCar.valueOf());
+// //! getting the key of an Object
+
+// console.log(luxuryCar.valueOf());
+
+// //! getting keys from Object using loops
+
+// Object.keys(luxuryCar).forEach(key => {
+//     console.log(key);
+// })
+
+// //? for ..in loop includes inherited properties.
+// for(let key in luxuryCar){
+//     console.log(key);
+// }
+
+
+// & Object constructors
+function Animal(species){
+    this.species = species;
+    this.eat = true;
 }
 
-const luxuryCar = {};
-Object.setPrototypeOf(luxuryCar, car);
-luxuryCar.seatMaterial="leather";
-console.log('luxury car is', luxuryCar);
-console.log('(parent)car is', car);
+Animal.prototype.walks = function(){
+    return `A ${this.species} is walking`;
+}
 
-
-// ! walking up the prototype chain - properties and methods are not copied.
-console.log(luxuryCar.valueOf());
-//! getting the key of an Object
-
-console.log(luxuryCar.valueOf());
-
-//! getting keys from Object using loops
-
-Object.keys(luxuryCar).forEach(key => {
-    console.log(key);
-})
-
-
-
-
+const Bear = new Animal("bear");
+console.log(Bear);
+console.log(Bear.walks());
+//? The prototype property is where inheritable props and methods are.
+console.log(Bear.__proto__);
+console.log(Bear.__proto__ === Animal.prototype);
