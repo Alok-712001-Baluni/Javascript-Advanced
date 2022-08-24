@@ -87,18 +87,55 @@ Object.setPrototypeOf(musician, person); // ? musician is the child of person
 
 
 // & Object constructors
-function Animal(species){
-    this.species = species;
-    this.eat = true;
+// function Animal(species){
+//     this.species = species;
+//     this.eat = true;
+// }
+
+// Animal.prototype.walks = function(){
+//     return `A ${this.species} is walking`;
+// }
+
+// const Bear = new Animal("bear");
+// console.log(Bear);
+// console.log(Bear.walks());
+// //? The prototype property is where inheritable props and methods are.
+// console.log(Bear.__proto__);
+// console.log(Bear.__proto__ === Animal.prototype);
+
+
+
+//& ES6 classes example of inheritance.
+
+class Vehicle{
+    constructor(){
+        this.wheels = 4;
+        this.motorized = true;
+    }
+
+    ready(){
+        return "Ready to go!!!!!!!!";
+    }
 }
 
-Animal.prototype.walks = function(){
-    return `A ${this.species} is walking`;
+
+class Motorcycle extends Vehicle{
+    constructor(){
+        super(); // ? have to call super to use this inside constructor
+        this.wheels = 2;
+    }
+
+
+    wheelie(){
+        return "On One wheel now!!!!!!";
+    }
 }
 
-const Bear = new Animal("bear");
-console.log(Bear);
-console.log(Bear.walks());
-//? The prototype property is where inheritable props and methods are.
-console.log(Bear.__proto__);
-console.log(Bear.__proto__ === Animal.prototype);
+
+const myBike = new Motorcycle();
+console.log(myBike);
+console.log(myBike.ready());
+console.log(myBike.wheelie());
+
+const myTruck = new Vehicle();
+console.log(myTruck); 
